@@ -1,24 +1,34 @@
-# GPT Workspace Runtime
+# GPT Workspace
 
-> Reserved integration workspace for GPT-driven automation, experiments, and supporting runtime components.
+> The execution and integration workspace for the GPT-centered operating system.
 
 ## Role
 
-This repository is intentionally kept separate from `learnaiagent`.
+`gpt-workspace` is the implementation layer around GPT. It is intentionally separate from `Quantitative-Investment-Research-Lab` and Notion.
 
-- `learnaiagent` is the learning, research, and agent-engineering knowledge base.
-- `waitgpt2` is the execution/integration side for GPT-related tooling and experiments.
+- `Quantitative-Investment-Research-Lab` is the research, methods, experiments, and durable technical-knowledge layer.
+- `gpt-workspace` is the tooling, integration, automation, and runtime layer.
+- Notion is the operational control plane for plans, tasks, projects, and transient state.
+- GPT coordinates research, reasoning, planning, and execution across the system.
 
 ## Intended uses
 
-- Integration experiments
-- Automation prototypes
-- GPT-adjacent runtime components
-- Tooling and connector experiments
-- Small reproducible prototypes that should not pollute the learning repository
+- GPT-facing tools and reusable tool wrappers
+- Connector and external-service integrations
+- Automation and workflow implementations
+- GPT ↔ Notion ↔ GitHub synchronization
+- Runtime experiments
+- Integration tests and operational checks
+- Small reproducible implementation prototypes
+
+## Architecture principle
+
+Keep components small, composable, testable, and provider-agnostic where practical. Do not turn a framework or model provider into a hard dependency without validating it against the actual workload.
+
+## System loop
+
+`Notion task → GPT planning → Skill/Tool execution → GitHub artifact or research update → validation → Notion state update`
 
 ## Status
 
-**Initialized — structure will evolve with actual implementation needs.**
-
-Architecture decisions should favor small, composable components and avoid coupling this repository to a single model provider or framework.
+**Active — implementation layer under continuous development.**
