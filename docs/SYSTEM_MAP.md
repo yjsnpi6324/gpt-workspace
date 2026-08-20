@@ -1,17 +1,27 @@
 # System Map
 
 ## Role
-`gpt-workspace` is the integration and runtime layer for the AI assistant system.
+`gpt-workspace` is the engineering and integration layer for the GPT / ChatGPT work system.
 
 ## Responsibilities
-- GPT-facing utilities and tools
-- Connector and external-service integration experiments
-- Automation and workflow implementations
-- Runtime configuration and reusable operational components
-- Integration tests and technical notes
+- GPT-facing utilities and reusable tools
+- Prompt and Skill specifications
+- Project / Task execution workflows
+- Connector and external-service integration
+- Automation workflows
+- Runtime configuration
+- Integration tests and technical documentation
 
-## Boundary
-Research knowledge and Agent engineering belong in `ai-agent-lab`. Plans, tasks, and project state belong in Notion. This repository contains the implementation layer that connects those systems to GPT.
+## System boundaries
+
+- GPT owns reasoning, research, decisions, and orchestration.
+- Project owns current working context.
+- Task owns recurring or triggered execution.
+- Notion owns durable structured state and historical records.
+- File Library owns research materials, rules, and reusable source files.
+- `gpt-workspace` owns reusable GPT engineering assets.
+- `Quantitative-Investment-Research-Lab` owns quantitative models, factors, experiments, backtests, and validation.
 
 ## Quality loop
+
 `design → implement → test → validate → document → integrate → maintain`
