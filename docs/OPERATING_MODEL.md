@@ -2,7 +2,7 @@
 
 ## System role
 
-`gpt-workspace` is the execution/integration layer around GPT. It should not duplicate Notion's task database or `ai-agent-lab`'s research corpus.
+`gpt-workspace` is the execution and integration layer around GPT. It should not duplicate Notion's operational state or `Quantitative-Investment-Research-Lab`'s research corpus.
 
 ## Responsibilities
 
