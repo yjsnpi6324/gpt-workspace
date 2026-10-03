@@ -1,0 +1,41 @@
+name: Supabase explicit grants
+
+on:
+  pull_request:
+    paths:
+      - 'supabase/**'
+      - 'tests/supabase/**'
+      - '.github/workflows/supabase-grants.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/**'
+      - 'tests/supabase/**'
+      - '.github/workflows/supabase-grants.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  reset-and-grants:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v3
+        with:
+          version: '2.119.0'
+      - name: Start disposable Postgres 17
+        run: supabase db start --agent yes
+      - name: Replay with automatic grants removed
+        run: |
+          set -euo pipefail
+          supabase db reset --local --no-seed --version 20260903132909 --yes
+          supabase db query --local --file tests/supabase/no_default_grants.sql
+          supabase migration up --local
+          supabase db query --local --file tests/supabase/explicit_grants.sql
+      - name: Full db reset and repeat permission checks
+        run: |
+          set -euo pipefail
+          supabase db reset --local --no-seed --yes
+          supabase db query --local --file tests/supabase/explicit_grants.sql

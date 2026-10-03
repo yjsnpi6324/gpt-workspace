@@ -1,0 +1,67 @@
+{
+  "engine": "PostgreSQL 18.3 (PGlite 0.5.8) on wasm32-unknown-emscripten, compiled by emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 3.1.74 (1092ec30a3fb1d46b1782ff1b4db5094d3d06ae5), 32-bit",
+  "packages": {
+    "pglite": "0.5.8",
+    "pgvector": "0.0.9"
+  },
+  "actual_supabase_cli_reset": false,
+  "actual_hosted_preview": false,
+  "results": [
+    {
+      "name": "original: no automatic grants denies service-role SELECT (42501)",
+      "status": "PASS",
+      "denied_tables": 8
+    },
+    {
+      "name": "original: absent hosted helper prevents reset replay (42883)",
+      "status": "PASS",
+      "error": "42883"
+    },
+    {
+      "name": "fixed: fresh preview equivalent, defaults removed, no hosted helper",
+      "status": "PASS",
+      "tables": 8,
+      "privilege_assertions": 192,
+      "client_denials": 16,
+      "same_migration_grants": true,
+      "real_service_dml": true,
+      "client_rls": true
+    },
+    {
+      "name": "fixed: legacy default grants, no hosted helper",
+      "status": "PASS",
+      "tables": 8,
+      "privilege_assertions": 192,
+      "client_denials": 16,
+      "same_migration_grants": true,
+      "real_service_dml": true,
+      "client_rls": true
+    },
+    {
+      "name": "fixed: hosted helper present and remains inaccessible to clients",
+      "status": "PASS",
+      "tables": 8,
+      "privilege_assertions": 192,
+      "client_denials": 16,
+      "same_migration_grants": true,
+      "real_service_dml": true,
+      "client_rls": true
+    },
+    {
+      "name": "fixed: drop/recreate public and replay twice with defaults removed",
+      "status": "PASS",
+      "cycles": 2,
+      "tables_per_cycle": 8
+    },
+    {
+      "name": "negative control: removing same-migration GRANT fails 20260903132922",
+      "status": "PASS",
+      "detected_missing_grant": true
+    },
+    {
+      "name": "negative control: removing same-migration GRANT fails 20260903133213",
+      "status": "PASS",
+      "detected_missing_grant": true
+    }
+  ]
+}
