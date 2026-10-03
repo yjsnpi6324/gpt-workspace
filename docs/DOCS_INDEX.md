@@ -9,6 +9,9 @@ This repository is the runtime/integration layer. Keep documentation focused on 
 - `docs/` — runtime/integration contracts and operating documentation.
 - `skills/` — reusable workspace skills.
 
+For the optional SDK boundary, composition rules, failure mapping and offline
+validation, see [OpenAI Agents adapter](OPENAI_AGENTS_ADAPTER.md).
+
 ## Research boundary
 
 Quantitative research specifications, prediction evaluation, model governance and durable research datasets belong in `Quantitative-Investment-Research-Lab`.

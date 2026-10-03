@@ -34,6 +34,29 @@ class RuntimeContractTests(unittest.TestCase):
                 error_message="tool failed",
             )
 
+    def test_blank_task_id_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "task_id is required"):
+            Task(task_id="   ", input="valid input").validate()
+
+    def test_success_requires_output_and_cannot_contain_errors(self):
+        for fields in (
+            {},
+            {"output": "text", "error_type": ErrorType.RUNTIME_ERROR},
+            {"output": "text", "error_message": "failure"},
+        ):
+            with self.subTest(fields=fields), self.assertRaises(ValueError):
+                RunResult(task_id="demo", status=RunStatus.SUCCESS, **fields)
+
+    def test_failure_requires_both_typed_error_and_nonempty_message(self):
+        for fields in (
+            {},
+            {"error_type": ErrorType.TOOL_ERROR},
+            {"error_message": "failure"},
+            {"error_type": ErrorType.TOOL_ERROR, "error_message": ""},
+        ):
+            with self.subTest(fields=fields), self.assertRaises(ValueError):
+                RunResult(task_id="demo", status=RunStatus.FAILED, **fields)
+
 
 if __name__ == "__main__":
     unittest.main()

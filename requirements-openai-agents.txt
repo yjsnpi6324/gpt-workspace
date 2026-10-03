@@ -1,0 +1,2 @@
+# Optional adapter compatibility dependency; the neutral runtime needs only stdlib.
+openai-agents==0.23.1
