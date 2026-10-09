@@ -31,11 +31,11 @@ jobs:
         run: |
           set -euo pipefail
           supabase db reset --local --no-seed --version 20260903132909 --yes
-          supabase db query --local --file tests/supabase/no_default_grants.sql
+          PGPASSWORD=postgres psql -X -v ON_ERROR_STOP=1 -h 127.0.0.1 -p 54322 -U postgres -d postgres -f tests/supabase/no_default_grants.sql
           supabase migration up --local
-          supabase db query --local --file tests/supabase/explicit_grants.sql
+          PGPASSWORD=postgres psql -X -v ON_ERROR_STOP=1 -h 127.0.0.1 -p 54322 -U postgres -d postgres -f tests/supabase/explicit_grants.sql
       - name: Full db reset and repeat permission checks
         run: |
           set -euo pipefail
           supabase db reset --local --no-seed --yes
-          supabase db query --local --file tests/supabase/explicit_grants.sql
+          PGPASSWORD=postgres psql -X -v ON_ERROR_STOP=1 -h 127.0.0.1 -p 54322 -U postgres -d postgres -f tests/supabase/explicit_grants.sql
