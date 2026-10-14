@@ -1,2 +1,5 @@
 __pycache__/
 *.py[cod]
+supabase/.temp/
+supabase/.branches/
+.supabase/

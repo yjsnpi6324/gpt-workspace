@@ -8,6 +8,7 @@ This repository is the runtime/integration layer. Keep documentation focused on 
 - `docs/REPOSITORY_MAP.md` — ownership boundaries and system handoff.
 - `docs/` — runtime/integration contracts and operating documentation.
 - `skills/` — reusable workspace skills.
+- `SUPABASE_MIGRATIONS.md` — recovered data-hub migration sources, explicit grants and replay verification.
 
 For the optional SDK boundary, composition rules, failure mapping and offline
 validation, see [OpenAI Agents adapter](OPENAI_AGENTS_ADAPTER.md).
